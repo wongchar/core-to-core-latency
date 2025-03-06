@@ -118,4 +118,14 @@ pub fn run_bench(cores: &[CoreId], clock: &Clock, args: &CliArgs, bench: impl Be
             println!("{}", row);
         }
     }
+
+    if args.jitter {
+        let results = results.std_axis(Axis(2), 1.0) / (num_samples as f64).sqrt();
+        for row in results.rows() {
+            let row = row.iter()
+                .map(|v| if v.is_nan() { "".to_string() } else { v.to_string() })
+                .collect::<Vec<_>>().join(",");
+            println!("{}", row);
+        }
+    }
 }

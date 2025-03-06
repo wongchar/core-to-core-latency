@@ -25,6 +25,10 @@ pub struct CliArgs {
     #[clap(long, value_parser)]
     csv: bool,
 
+    /// Outputs the mean latencies in CSV format on stdout
+    #[clap(long, value_parser)]
+    jitter: bool,
+
     /// Select which benchmark to run, in a comma delimited list, e.g., '1,3' {n}
     /// 1: CAS latency on a single shared cache line. {n}
     /// 2: Single-writer single-reader latency on two shared cache lines. {n}
